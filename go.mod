@@ -8,7 +8,7 @@ require (
 )
 
 require (
-	github.com/BurntSushi/toml v1.3.2 // indirect
+	github.com/BurntSushi/toml v1.5.0 // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
 	github.com/fxamacker/cbor/v2 v2.5.0 // indirect
 	github.com/jtejido/go-wsq v0.0.3-beta // indirect
