@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/warnakulasuriya-fds-e23/biometric-orchestration-go-server/requestobjects"
+	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/requestobjects"
 	"github.com/warnakulasuriya-fds-e23/go-sourceafis-fork/templates"
 )
 
@@ -16,7 +16,7 @@ func (client *httpclientimpl) matchTemplate(probe templates.SearchTemplate, cand
 	probeBytes := client.sdk.GetAsByteArray(&probe)
 	candidateBytes := client.sdk.GetAsByteArray(&candidate)
 
-	obj := requestobjects.MatchTemplatesReqObj{Probe: *probeBytes, Candidate: *candidateBytes}
+	obj := requestobjects.MatchTemplatesReqObj{ProbeCbor: *probeBytes, CandidateCbor: *candidateBytes}
 	jsonobj, err := json.Marshal(obj)
 	if err != nil {
 		log.Fatal(err.Error())
