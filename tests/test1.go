@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/miqdadyyy/go-sourceafis"
+	"github.com/warnakulasuriya-fds-e23/go-sourceafis-fork"
 )
 
 type TransparencyContents struct {

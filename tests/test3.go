@@ -7,9 +7,9 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/miqdadyyy/go-sourceafis"
-	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/entities"
-	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/utils"
+	"github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk/entities"
+	"github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk/sdkutils"
+	"github.com/warnakulasuriya-fds-e23/go-sourceafis-fork"
 )
 
 func Test3() {
@@ -19,7 +19,7 @@ func Test3() {
 
 	var gallery []*entities.SearchTemplateRecord
 	t := time.Now()
-	utils.LoadImagesDirToGallery(&gallery, fingerprintImagesDirectoryPath)
+	sdkutils.LoadImagesDirToGallery(&gallery, fingerprintImagesDirectoryPath)
 
 	probeImageName := "DB1_B105_7.png"
 	probeImg, err := sourceafis.LoadImage(filepath.Join(fingerprintImagesDirectoryPath, probeImageName))

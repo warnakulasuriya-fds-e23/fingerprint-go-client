@@ -3,8 +3,8 @@ package main
 import (
 	"runtime"
 
-	"github.com/miqdadyyy/go-sourceafis/config"
 	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/tests"
+	"github.com/warnakulasuriya-fds-e23/go-sourceafis-fork/config"
 )
 
 func main() {

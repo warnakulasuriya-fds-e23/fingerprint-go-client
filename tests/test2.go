@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk/entities"
-	"github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk/utils"
+	"github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk/sdkutils"
 )
 
 func Test2() {
@@ -15,12 +15,12 @@ func Test2() {
 
 	var gallery []*entities.SearchTemplateRecord
 	t := time.Now()
-	utils.LoadImagesDirToGallery(&gallery, fingerprintImagesDirectoryPath)
+	sdkutils.LoadImagesDirToGallery(&gallery, fingerprintImagesDirectoryPath)
 	firstduration := time.Since(t)
 	fmt.Println("Time elapsed to load Images Directory to gallery: ", firstduration)
 
 	t = time.Now()
-	utils.SaveGalleryToCborDir(&gallery, cborDirectoryPath)
+	sdkutils.SaveGalleryToCborDir(&gallery, cborDirectoryPath)
 	secondduration := time.Since(t)
 	fmt.Println("Time elapsed to save gallery to cbor directory: ", secondduration)
 
@@ -29,7 +29,7 @@ func Test2() {
 	fmt.Println("gallery cleared")
 
 	t = time.Now()
-	utils.LoadCborDirToGallery(&gallery, cborDirectoryPath)
+	sdkutils.LoadCborDirToGallery(&gallery, cborDirectoryPath)
 	thirdduration := time.Since(t)
 	fmt.Println("Time elapsed to load cbor dir to gallery: ", thirdduration)
 	fmt.Println("\n\n\nloading up images dir duration: ", firstduration)
