@@ -10,7 +10,7 @@ import (
 func Test5() {
 	var fingerprintImagesDirectoryPath string = "/home/dheera/FingerPrintDatabases/smallPNGDataset/"
 	var cborDirectoryPath = "/home/dheera/FingerPrintDatabases/cborDirectory2ForGo/"
-	sdk, err := core.NewsdkCore(fingerprintImagesDirectoryPath, cborDirectoryPath)
+	sdk, err := core.NewSDKCore(fingerprintImagesDirectoryPath, cborDirectoryPath)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
