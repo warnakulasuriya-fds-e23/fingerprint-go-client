@@ -18,7 +18,6 @@ func Test3() {
 	// var cborDirectoryPath = "/home/dheera/FingerPrintDatabases/cborDirectory2ForGo/"
 
 	var gallery []*entities.SearchTemplateRecord
-	t := time.Now()
 	sdkutils.LoadImagesDirToGallery(&gallery, fingerprintImagesDirectoryPath)
 
 	probeImageName := "DB1_B105_7.png"
@@ -44,7 +43,7 @@ func Test3() {
 	max := -1000.000
 	var match entities.SearchTemplateRecord
 	threshold := 40
-	t = time.Now()
+	t := time.Now()
 	for _, templateRecordptr := range gallery {
 		candidate := templateRecordptr.Template
 		score := matcher.Match(ctx, &candidate)
