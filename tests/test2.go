@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/entities"
-	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/utils"
+	"github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk/entities"
+	"github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk/utils"
 )
 
 func Test2() {
