@@ -9,12 +9,13 @@ import (
 	"net/url"
 
 	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/requestobjects"
+	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/responseobjects"
 	"github.com/warnakulasuriya-fds-e23/go-sourceafis-fork/templates"
 )
 
-func (client *httpclientimpl) matchTemplate(probe templates.SearchTemplate, candidate templates.SearchTemplate) (isMatch bool) {
-	probeBytes := client.sdk.GetAsByteArray(&probe)
-	candidateBytes := client.sdk.GetAsByteArray(&candidate)
+func (client *httpclientimpl) matchTemplate(probe *templates.SearchTemplate, candidate *templates.SearchTemplate) (isMatch bool) {
+	probeBytes := client.sdk.GetAsByteArray(probe)
+	candidateBytes := client.sdk.GetAsByteArray(candidate)
 
 	obj := requestobjects.MatchTemplatesReqObj{ProbeCbor: *probeBytes, CandidateCbor: *candidateBytes}
 	jsonobj, err := json.Marshal(obj)
@@ -31,15 +32,19 @@ func (client *httpclientimpl) matchTemplate(probe templates.SearchTemplate, cand
 	}
 	defer resp.Body.Close()
 
-	body, err := io.ReadAll(resp.Body)
+	bodyBytes, err := io.ReadAll(resp.Body)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	bdy := string(body)
-
-	if bdy == "match" {
-		return true
-	} else {
-		return false
+	var responseobj responseobjects.MatchTemplatesResObj
+	err = json.Unmarshal(bodyBytes, &responseobj)
+	if err != nil {
+		log.Fatal(err.Error())
 	}
+	if responseobj.Status == "match" {
+		isMatch = true
+	} else {
+		isMatch = false
+	}
+	return
 }

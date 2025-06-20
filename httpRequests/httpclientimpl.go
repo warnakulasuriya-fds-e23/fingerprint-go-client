@@ -46,7 +46,8 @@ func NewHttpClientImpl() *httpclientimpl {
 	return c
 }
 
-func (client *httpclientimpl) MatchTemplates(probe templates.SearchTemplate, candidate templates.SearchTemplate) (isMatch bool) {
+func (client *httpclientimpl) MatchTemplates(probe *templates.SearchTemplate, candidate *templates.SearchTemplate) (isMatch bool) {
+
 	isMatch = client.matchTemplate(probe, candidate)
 	return
 }
