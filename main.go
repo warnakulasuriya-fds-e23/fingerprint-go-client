@@ -10,5 +10,5 @@ import (
 func main() {
 	config.LoadDefaultConfig()
 	config.Config.Workers = runtime.NumCPU()
-	tests.Test6()
+	tests.Test7()
 }
