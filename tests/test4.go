@@ -41,6 +41,9 @@ func Test4() {
 	}
 
 	comparison2, err := sdk.Match(probe, nonMatchingCandidate)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 
 	fmt.Println("probe and matching Candidate: ", comparison1)
 	fmt.Println("probe and non matching Candidate: ", comparison2)
