@@ -14,8 +14,14 @@ import (
 )
 
 func (client *httpclientimpl) matchTemplate(probe *templates.SearchTemplate, candidate *templates.SearchTemplate) (isMatch bool) {
-	probeBytes := client.sdk.GetAsByteArray(probe)
-	candidateBytes := client.sdk.GetAsByteArray(candidate)
+	probeBytes, err := client.sdk.GetAsByteArray(probe)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	candidateBytes, err := client.sdk.GetAsByteArray(candidate)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 
 	obj := requestobjects.MatchTemplatesReqObj{ProbeCbor: *probeBytes, CandidateCbor: *candidateBytes}
 	jsonobj, err := json.Marshal(obj)

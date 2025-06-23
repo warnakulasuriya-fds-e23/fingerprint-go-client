@@ -20,11 +20,29 @@ func Test4() {
 		log.Fatal(err.Error())
 	}
 
-	probe := sdk.Extract(probeImagePath)
-	matchingCandidate := sdk.Extract(matchingImagePath)
-	nonMatchingCandidate := sdk.Extract(nonMatchingImagePath)
+	probe, err := sdk.Extract(probeImagePath)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 
-	fmt.Println("probe and matching Candidate: ", sdk.Match(probe, matchingCandidate))
-	fmt.Println("probe and non matching Candidate: ", sdk.Match(probe, nonMatchingCandidate))
+	matchingCandidate, err := sdk.Extract(matchingImagePath)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+
+	nonMatchingCandidate, err := sdk.Extract(nonMatchingImagePath)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+
+	comparison1, err := sdk.Match(probe, matchingCandidate)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+
+	comparison2, err := sdk.Match(probe, nonMatchingCandidate)
+
+	fmt.Println("probe and matching Candidate: ", comparison1)
+	fmt.Println("probe and non matching Candidate: ", comparison2)
 
 }

@@ -14,8 +14,10 @@ import (
 )
 
 func (client *httpclientimpl) identifyTemplateRequest(probe *templates.SearchTemplate) (isMatched bool, discoveredId string) {
-	probeBytes := client.sdk.GetAsByteArray(probe)
-
+	probeBytes, err := client.sdk.GetAsByteArray(probe)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 	reqobj := requestobjects.IdentifyTemplateReqObj{ProbeCbor: *probeBytes}
 	jsonobj, err := json.Marshal(reqobj)
 	if err != nil {

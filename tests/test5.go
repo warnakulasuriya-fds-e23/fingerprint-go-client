@@ -17,9 +17,15 @@ func Test5() {
 	sdk.LoadImages()
 
 	var probeImagePath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/DB3_B107_1.png"
-	probe := sdk.Extract(probeImagePath)
+	probe, err := sdk.Extract(probeImagePath)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 
-	isMatched, discoveredId := sdk.Identify(probe)
+	isMatched, discoveredId, err := sdk.Identify(probe)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 	fmt.Println("isMatched : ", isMatched)
 	fmt.Println("discovered Id: ", discoveredId)
 }

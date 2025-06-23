@@ -23,9 +23,18 @@ func Test6() {
 		log.Fatal(err.Error())
 	}
 
-	probe := sdk.Extract(probeImagePath)
-	matchingCandidate := sdk.Extract(matchingImagePath)
-	nonMatchingCandidate := sdk.Extract(nonMatchingImagePath)
+	probe, err := sdk.Extract(probeImagePath)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	matchingCandidate, err := sdk.Extract(matchingImagePath)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	nonMatchingCandidate, err := sdk.Extract(nonMatchingImagePath)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 
 	t := time.Now()
 	isMatch1 := client.MatchTemplates(probe, matchingCandidate)

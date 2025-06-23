@@ -22,7 +22,10 @@ func Test7() {
 		log.Fatal(err.Error())
 	}
 
-	probe := sdk.Extract(probeImagePath)
+	probe, err := sdk.Extract(probeImagePath)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 
 	t := time.Now()
 	isMatched, discoveredId := client.IdentifyTemplate(probe)
