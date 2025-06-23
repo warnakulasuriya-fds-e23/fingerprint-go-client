@@ -1,5 +1,5 @@
 package responseobjects
 
 type MatchTemplatesResObj struct {
-	Status string `json:"status"`
+	IsMatch bool `json:"ismatch"`
 }

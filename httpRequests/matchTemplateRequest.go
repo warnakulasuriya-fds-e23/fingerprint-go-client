@@ -41,10 +41,6 @@ func (client *httpclientimpl) matchTemplate(probe *templates.SearchTemplate, can
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	if responseobj.Status == "match" {
-		isMatch = true
-	} else {
-		isMatch = false
-	}
+	isMatch = responseobj.IsMatch
 	return
 }
