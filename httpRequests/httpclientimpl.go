@@ -12,7 +12,8 @@ import (
 )
 
 const (
-	MatchTemplatesEndpoint = "/api/fingerprint/match"
+	MatchTemplatesEndpoint   = "/api/fingerprint/match"
+	IdentifyTemplateEndpoint = "/api/fingerprint/identify"
 )
 
 type httpclientimpl struct {
@@ -49,5 +50,9 @@ func NewHttpClientImpl() *httpclientimpl {
 func (client *httpclientimpl) MatchTemplates(probe *templates.SearchTemplate, candidate *templates.SearchTemplate) (isMatch bool) {
 
 	isMatch = client.matchTemplate(probe, candidate)
+	return
+}
+func (client *httpclientimpl) IdentifyTemplate(probe *templates.SearchTemplate) (isMatched bool, discoveredId string) {
+	isMatched, discoveredId = client.identifyTemplateRequest(probe)
 	return
 }
