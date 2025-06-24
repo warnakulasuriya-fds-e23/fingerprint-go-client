@@ -14,6 +14,7 @@ import (
 const (
 	MatchTemplatesEndpoint   = "/api/fingerprint/match"
 	IdentifyTemplateEndpoint = "/api/fingerprint/identify"
+	EnrollTemplateEndpoint   = "/api/fingerprint/enroll"
 )
 
 type httpclientimpl struct {
@@ -47,6 +48,7 @@ func NewHttpClientImpl() *httpclientimpl {
 	return c
 }
 
+// TODO: Implement proper error handling for the http Request methods
 func (client *httpclientimpl) MatchTemplates(probe *templates.SearchTemplate, candidate *templates.SearchTemplate) (isMatch bool) {
 
 	isMatch = client.matchTemplate(probe, candidate)
@@ -54,5 +56,9 @@ func (client *httpclientimpl) MatchTemplates(probe *templates.SearchTemplate, ca
 }
 func (client *httpclientimpl) IdentifyTemplate(probe *templates.SearchTemplate) (isMatched bool, discoveredId string) {
 	isMatched, discoveredId = client.identifyTemplateRequest(probe)
+	return
+}
+func (client *httpclientimpl) EnrollTemplate(newEntry *templates.SearchTemplate, id string) (message string, err error) {
+	message, err = client.enrollTemplateRequest(newEntry, id)
 	return
 }
