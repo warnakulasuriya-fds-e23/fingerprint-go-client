@@ -1,6 +1,7 @@
 package httprequests
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -59,6 +60,47 @@ func (client *httpclientimpl) IdentifyTemplate(probe *templates.SearchTemplate) 
 	return
 }
 func (client *httpclientimpl) EnrollTemplate(newEntry *templates.SearchTemplate, id string) (message string, err error) {
+	message, err = client.enrollTemplateRequest(newEntry, id)
+	return
+}
+func (client *httpclientimpl) MatchTemplatesFilesMethod(probeFilePath string, candidateFilePath string) (isMatch bool, err error) {
+	// TODO: move main content of function body to a seperate file
+	probe, err := client.sdk.Extract(probeFilePath)
+	if err != nil {
+		isMatch = false
+		err = fmt.Errorf("error occured while extracting the template for the probe file, %w", err)
+		return
+	}
+	candidate, err := client.sdk.Extract(candidateFilePath)
+	if err != nil {
+		isMatch = false
+		err = fmt.Errorf("error occured while extractin the template for the candidate file, %w", err)
+		return
+	}
+	isMatch = client.matchTemplate(probe, candidate)
+	err = nil
+	return
+}
+func (client *httpclientimpl) IdentifyTemplateFilesMethod(probeFilePath string) (isMatched bool, discoveredId string, err error) {
+	// TODO: move main content of function body to a seperate file
+	probe, err := client.sdk.Extract(probeFilePath)
+	if err != nil {
+		isMatched = false
+		discoveredId = "none"
+		err = fmt.Errorf("error occured while extracting the template for the probe file, %w", err)
+		return
+	}
+	isMatched, discoveredId = client.identifyTemplateRequest(probe)
+	err = nil
+	return
+}
+func (client *httpclientimpl) EnrollTemplateFilesMethod(newEntryFilePath string, id string) (message string, err error) {
+	newEntry, err := client.sdk.Extract(newEntryFilePath)
+	if err != nil {
+		message = ""
+		err = fmt.Errorf("error occured while extracting the template for the new Entry file, %w", err)
+		return
+	}
 	message, err = client.enrollTemplateRequest(newEntry, id)
 	return
 }
