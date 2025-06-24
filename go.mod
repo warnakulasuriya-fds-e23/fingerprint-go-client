@@ -3,12 +3,12 @@ module github.com/warnakulasuriya-fds-e23/fingerprint-go-client
 go 1.24.4
 
 require (
-	github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.2
+	github.com/BurntSushi/toml v1.5.0
+	github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.3
 	github.com/warnakulasuriya-fds-e23/go-sourceafis-fork v0.0.0-20250620042209-ae068fce65ee
 )
 
 require (
-	github.com/BurntSushi/toml v1.5.0 // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
 	github.com/fxamacker/cbor/v2 v2.5.0 // indirect
 	github.com/jtejido/go-wsq v0.0.3-beta // indirect

@@ -1,5 +1,3 @@
-github.com/BurntSushi/toml v1.3.2 h1:o7IhLm0Msx3BaB+n3Ag7L8EVlByGnpq14C4YWiu/gL8=
-github.com/BurntSushi/toml v1.3.2/go.mod h1:CxXYINrC8qIiEnFrOxCa7Jy5BFHlXnUU2pbicEuybxQ=
 github.com/BurntSushi/toml v1.5.0 h1:W5quZX/G/csjUnuI8SUYlsHs9M38FC7znL0lIO+DvMg=
 github.com/BurntSushi/toml v1.5.0/go.mod h1:ukJfTF/6rtPPRCnwkur4qwRxa8vTRFBF0uk2lLoLwho=
 github.com/emirpasic/gods v1.18.1 h1:FXtiHYKDGKCW2KzwZKx0iC0PQmdlorYgdFG9jPXJ1Bc=
@@ -17,16 +15,10 @@ github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e h1:fD57ERR4JtEqsWb
 github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e/go.mod h1:zD1mROLANZcx1PVRCS0qkT7pwLkGfwJo4zjcN/Tysno=
 github.com/spakin/netpbm v1.3.0 h1:eDX7VvrkN5sHXW0luZXRA4AKDlLmu0E5sNxJ7VSTwxc=
 github.com/spakin/netpbm v1.3.0/go.mod h1:Q+ep6vNv1G44qSWp0wt3Y9o1m/QXjmaXZIFC0PMVpq0=
-github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.0.1 h1:GEnB9h0A636msMdlwxhiL67YmU/H7dYCs/cJj3Mseqc=
-github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.0.1/go.mod h1:2aa6dqmKG7NG7xsyJ8GNpACgQISYGwGnee+an+1IIRc=
-github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.0.3-0.20250620074544-29113a973756 h1:9Uj1xEd/0PV1c2NlZlFH4GyAU10HKfKE7Qe1DIA+jL4=
-github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.0.3-0.20250620074544-29113a973756/go.mod h1:2aa6dqmKG7NG7xsyJ8GNpACgQISYGwGnee+an+1IIRc=
-github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.0 h1:3a7DDnZqKGoJpIRk97pgQd3PKlZhNrNNKqBtTuF6rs4=
-github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.0/go.mod h1:2aa6dqmKG7NG7xsyJ8GNpACgQISYGwGnee+an+1IIRc=
-github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.1 h1:SLWPXofxwLfVGa1+wOnwqRJRdCrz008BMPbEmxSzI80=
-github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.1/go.mod h1:2aa6dqmKG7NG7xsyJ8GNpACgQISYGwGnee+an+1IIRc=
 github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.2 h1:6ZY3iu8To1PFbEl0hB14oyVKyGf9B9OKjdoXwvgwmpQ=
 github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.2/go.mod h1:2aa6dqmKG7NG7xsyJ8GNpACgQISYGwGnee+an+1IIRc=
+github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.3 h1:vJAHhyX/h6HmWzBcBONX0tofj86uS6Pm43Zrf2RxlBc=
+github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.3/go.mod h1:2aa6dqmKG7NG7xsyJ8GNpACgQISYGwGnee+an+1IIRc=
 github.com/warnakulasuriya-fds-e23/go-sourceafis-fork v0.0.0-20250620042209-ae068fce65ee h1:zOcVKoeh82c8s/IJyxxMh2eNzA5RPLgc/VaVlqI33T8=
 github.com/warnakulasuriya-fds-e23/go-sourceafis-fork v0.0.0-20250620042209-ae068fce65ee/go.mod h1:9Z/zP/L48DtmjFZymr33jP7nzLmixaiaIPUUu0ik+zk=
 github.com/x448/float16 v0.8.4 h1:qLwI1I70+NjRFUR3zs1JPUCgaCXSh3SW62uAKT1mSBM=
