@@ -3,7 +3,7 @@ module github.com/warnakulasuriya-fds-e23/fingerprint-go-client
 go 1.24.4
 
 require (
-	github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.0
+	github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.1
 	github.com/warnakulasuriya-fds-e23/go-sourceafis-fork v0.0.0-20250620042209-ae068fce65ee
 )
 
