@@ -15,6 +15,7 @@ import (
 )
 
 func (client *httpclientimpl) enrollTemplateRequest(newEntry *templates.SearchTemplate, id string) (message string, err error) {
+	client.SetOrAddHeaderValueAccordingToKey("Content-Type", "application/json")
 	message = ""
 	newEntryData, err := client.sdk.GetAsByteArray(newEntry)
 	if err != nil {

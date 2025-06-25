@@ -14,6 +14,7 @@ import (
 )
 
 func (client *httpclientimpl) identifyTemplateRequest(probe *templates.SearchTemplate) (isMatched bool, discoveredId string) {
+	client.SetOrAddHeaderValueAccordingToKey("Content-Type", "application/json")
 	probeBytes, err := client.sdk.GetAsByteArray(probe)
 	if err != nil {
 		log.Fatal(err.Error())
