@@ -28,11 +28,22 @@ func (client *httpclientimpl) matchTemplate(probe *templates.SearchTemplate, can
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	url, err := url.JoinPath(client.orchestrationServerAdress, MatchTemplatesEndpoint)
+	urlString, err := url.JoinPath(client.orchestrationServerAdress, MatchTemplatesEndpoint)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	resp, err := http.Post(url, "application/json", bytes.NewBuffer(jsonobj))
+	requestBody := bytes.NewBuffer(jsonobj)
+	req, err := http.NewRequest("POST", urlString, requestBody)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+
+	for _, headerKeyValuePair := range client.headerKeyValueArray {
+		req.Header.Add(headerKeyValuePair.key, headerKeyValuePair.value)
+	}
+
+	internalClient := &http.Client{}
+	resp, err := internalClient.Do(req)
 	if err != nil {
 		log.Fatal(err.Error())
 	}

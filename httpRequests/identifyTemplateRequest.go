@@ -27,8 +27,19 @@ func (client *httpclientimpl) identifyTemplateRequest(probe *templates.SearchTem
 	if err != nil {
 		log.Fatal(err.Error())
 	}
+	requestBody := bytes.NewBuffer(jsonobj)
+	req, err := http.NewRequest("POST", urlString, requestBody)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 
-	resp, err := http.Post(urlString, "application/json", bytes.NewBuffer(jsonobj))
+	for _, headerKeyValuePair := range client.headerKeyValueArray {
+		req.Header.Add(headerKeyValuePair.key, headerKeyValuePair.value)
+	}
+
+	internalClient := &http.Client{}
+	resp, err := internalClient.Do(req)
+
 	if err != nil {
 		log.Fatal(err.Error())
 	}

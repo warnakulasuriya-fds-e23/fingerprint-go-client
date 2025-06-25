@@ -18,11 +18,17 @@ const (
 	EnrollTemplateEndpoint   = "/api/fingerprint/enroll"
 )
 
+type httpHeaderKeyValue struct {
+	key   string
+	value string
+}
+
 type httpclientimpl struct {
 	orchestrationServerAdress string
 	imagesDir                 string
 	cborDir                   string
 	sdk                       *core.SDKCore
+	headerKeyValueArray       []httpHeaderKeyValue
 }
 
 func NewHttpClientImpl() *httpclientimpl {
@@ -47,6 +53,26 @@ func NewHttpClientImpl() *httpclientimpl {
 		sdk:                       sdk,
 	}
 	return c
+}
+
+func (client *httpclientimpl) SetOrAddHeaderValueAccordingToKey(key string, value string) {
+	discoverkey := false
+	for _, headerKeyValuePair := range client.headerKeyValueArray {
+		if headerKeyValuePair.key == key {
+			discoverkey = true
+			headerKeyValuePair.value = value
+			break
+		}
+	}
+	if !discoverkey {
+		client.headerKeyValueArray = append(client.headerKeyValueArray, httpHeaderKeyValue{key: key, value: value})
+	} else {
+		return
+	}
+}
+
+func (client *httpclientimpl) ClearAddedHeaderKeyValuePairs() {
+	client.headerKeyValueArray = make([]httpHeaderKeyValue, 0)
 }
 
 // TODO: Implement proper error handling for the http Request methods

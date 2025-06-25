@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"net/url"
 
@@ -31,7 +32,18 @@ func (client *httpclientimpl) enrollTemplateRequest(newEntry *templates.SearchTe
 		err = fmt.Errorf("error occured while trying to url string using url.JoinPath , %w", err)
 		return
 	}
-	resp, err := http.Post(urlString, "application/json", bytes.NewBuffer(jsonobj))
+	requestBody := bytes.NewBuffer(jsonobj)
+	req, err := http.NewRequest("POST", urlString, requestBody)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+
+	for _, headerKeyValuePair := range client.headerKeyValueArray {
+		req.Header.Add(headerKeyValuePair.key, headerKeyValuePair.value)
+	}
+
+	internalClient := &http.Client{}
+	resp, err := internalClient.Do(req)
 	if err != nil {
 		err = fmt.Errorf("error occured while using http.Post , %w", err)
 		return
