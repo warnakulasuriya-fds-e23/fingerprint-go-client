@@ -8,9 +8,8 @@ import (
 	httprequests "github.com/warnakulasuriya-fds-e23/fingerprint-go-client/httpRequests"
 )
 
-func Test7() {
+func Test7(client *httprequests.Httpclientimpl) {
 	fmt.Println("Identify endpoint test")
-	client := httprequests.NewHttpClientImpl()
 	var probeImagePath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/DB3_B107_1.png"
 
 	t := time.Now()

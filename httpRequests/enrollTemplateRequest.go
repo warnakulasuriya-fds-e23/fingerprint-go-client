@@ -14,7 +14,7 @@ import (
 	"github.com/warnakulasuriya-fds-e23/go-sourceafis-fork/templates"
 )
 
-func (client *httpclientimpl) enrollTemplateRequest(newEntry *templates.SearchTemplate, id string) (message string, err error) {
+func (client *Httpclientimpl) enrollTemplateRequest(newEntry *templates.SearchTemplate, id string) (message string, err error) {
 	client.SetOrAddHeaderValueAccordingToKey("Content-Type", "application/json")
 	message = ""
 	newEntryData, err := client.sdk.GetAsByteArray(newEntry)

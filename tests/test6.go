@@ -8,8 +8,7 @@ import (
 	httprequests "github.com/warnakulasuriya-fds-e23/fingerprint-go-client/httpRequests"
 )
 
-func Test6() {
-	client := httprequests.NewHttpClientImpl()
+func Test6(client *httprequests.Httpclientimpl) {
 	var probeImagePath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/DB1_B101_1.png"
 	var matchingImagePath string = probeImagePath
 	var nonMatchingImagePath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/DB1_B102_1.png"

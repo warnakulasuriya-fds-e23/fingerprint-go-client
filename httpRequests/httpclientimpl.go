@@ -23,7 +23,7 @@ type httpHeaderKeyValue struct {
 	value string
 }
 
-type httpclientimpl struct {
+type Httpclientimpl struct {
 	orchestrationServerAdress string
 	imagesDir                 string
 	cborDir                   string
@@ -31,7 +31,7 @@ type httpclientimpl struct {
 	headerKeyValueArray       []httpHeaderKeyValue
 }
 
-func NewHttpClientImpl() *httpclientimpl {
+func NewHttpClientImpl() *Httpclientimpl {
 	workingDir, err := os.Getwd()
 	if err != nil {
 		log.Fatal(err.Error())
@@ -46,7 +46,7 @@ func NewHttpClientImpl() *httpclientimpl {
 		log.Fatal(err.Error())
 	}
 
-	c := &httpclientimpl{
+	c := &Httpclientimpl{
 		orchestrationServerAdress: config.OrchestrationServerAdress,
 		imagesDir:                 config.ImagesDir,
 		cborDir:                   config.CborDir,
@@ -55,7 +55,7 @@ func NewHttpClientImpl() *httpclientimpl {
 	return c
 }
 
-func (client *httpclientimpl) SetOrAddHeaderValueAccordingToKey(key string, value string) {
+func (client *Httpclientimpl) SetOrAddHeaderValueAccordingToKey(key string, value string) {
 	discoverkey := false
 	for _, headerKeyValuePair := range client.headerKeyValueArray {
 		if headerKeyValuePair.key == key {
@@ -71,25 +71,25 @@ func (client *httpclientimpl) SetOrAddHeaderValueAccordingToKey(key string, valu
 	}
 }
 
-func (client *httpclientimpl) ClearAddedHeaderKeyValuePairs() {
+func (client *Httpclientimpl) ClearAddedHeaderKeyValuePairs() {
 	client.headerKeyValueArray = make([]httpHeaderKeyValue, 0)
 }
 
 // TODO: Implement proper error handling for the http Request methods
-func (client *httpclientimpl) MatchTemplates(probe *templates.SearchTemplate, candidate *templates.SearchTemplate) (isMatch bool) {
+func (client *Httpclientimpl) MatchTemplates(probe *templates.SearchTemplate, candidate *templates.SearchTemplate) (isMatch bool) {
 
 	isMatch = client.matchTemplate(probe, candidate)
 	return
 }
-func (client *httpclientimpl) IdentifyTemplate(probe *templates.SearchTemplate) (isMatched bool, discoveredId string) {
+func (client *Httpclientimpl) IdentifyTemplate(probe *templates.SearchTemplate) (isMatched bool, discoveredId string) {
 	isMatched, discoveredId = client.identifyTemplateRequest(probe)
 	return
 }
-func (client *httpclientimpl) EnrollTemplate(newEntry *templates.SearchTemplate, id string) (message string, err error) {
+func (client *Httpclientimpl) EnrollTemplate(newEntry *templates.SearchTemplate, id string) (message string, err error) {
 	message, err = client.enrollTemplateRequest(newEntry, id)
 	return
 }
-func (client *httpclientimpl) MatchTemplatesFilesMethod(probeFilePath string, candidateFilePath string) (isMatch bool, err error) {
+func (client *Httpclientimpl) MatchTemplatesFilesMethod(probeFilePath string, candidateFilePath string) (isMatch bool, err error) {
 	// TODO: move main content of function body to a seperate file
 	probe, err := client.sdk.Extract(probeFilePath)
 	if err != nil {
@@ -107,7 +107,7 @@ func (client *httpclientimpl) MatchTemplatesFilesMethod(probeFilePath string, ca
 	err = nil
 	return
 }
-func (client *httpclientimpl) IdentifyTemplateFilesMethod(probeFilePath string) (isMatched bool, discoveredId string, err error) {
+func (client *Httpclientimpl) IdentifyTemplateFilesMethod(probeFilePath string) (isMatched bool, discoveredId string, err error) {
 	// TODO: move main content of function body to a seperate file
 	probe, err := client.sdk.Extract(probeFilePath)
 	if err != nil {
@@ -120,7 +120,7 @@ func (client *httpclientimpl) IdentifyTemplateFilesMethod(probeFilePath string) 
 	err = nil
 	return
 }
-func (client *httpclientimpl) EnrollTemplateFilesMethod(newEntryFilePath string, id string) (message string, err error) {
+func (client *Httpclientimpl) EnrollTemplateFilesMethod(newEntryFilePath string, id string) (message string, err error) {
 	newEntry, err := client.sdk.Extract(newEntryFilePath)
 	if err != nil {
 		message = ""

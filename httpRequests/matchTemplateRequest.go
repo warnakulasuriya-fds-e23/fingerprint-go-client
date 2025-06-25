@@ -13,7 +13,7 @@ import (
 	"github.com/warnakulasuriya-fds-e23/go-sourceafis-fork/templates"
 )
 
-func (client *httpclientimpl) matchTemplate(probe *templates.SearchTemplate, candidate *templates.SearchTemplate) (isMatch bool) {
+func (client *Httpclientimpl) matchTemplate(probe *templates.SearchTemplate, candidate *templates.SearchTemplate) (isMatch bool) {
 	client.SetOrAddHeaderValueAccordingToKey("Content-Type", "application/json")
 	probeBytes, err := client.sdk.GetAsByteArray(probe)
 	if err != nil {

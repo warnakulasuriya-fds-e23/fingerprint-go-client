@@ -8,8 +8,7 @@ import (
 	httprequests "github.com/warnakulasuriya-fds-e23/fingerprint-go-client/httpRequests"
 )
 
-func Test8() {
-	client := httprequests.NewHttpClientImpl()
+func Test8(client *httprequests.Httpclientimpl) {
 	var NewEntryImagePath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/DB3_B107_1.png"
 	t := time.Now()
 	message, err := client.EnrollTemplateFilesMethod(NewEntryImagePath, "testuser1")
