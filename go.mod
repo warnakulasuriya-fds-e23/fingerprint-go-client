@@ -4,6 +4,7 @@ go 1.24.4
 
 require (
 	github.com/BurntSushi/toml v1.5.0
+	github.com/joho/godotenv v1.5.1
 	github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.5
 	github.com/warnakulasuriya-fds-e23/go-sourceafis-fork v0.0.0-20250620042209-ae068fce65ee
 )

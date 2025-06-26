@@ -4,6 +4,8 @@ github.com/emirpasic/gods v1.18.1 h1:FXtiHYKDGKCW2KzwZKx0iC0PQmdlorYgdFG9jPXJ1Bc
 github.com/emirpasic/gods v1.18.1/go.mod h1:8tpGGwCnJ5H4r6BWwaV6OrWmMoPhUl5jm/FMNAnJvWQ=
 github.com/fxamacker/cbor/v2 v2.5.0 h1:oHsG0V/Q6E/wqTS2O1Cozzsy69nqCiguo5Q1a1ADivE=
 github.com/fxamacker/cbor/v2 v2.5.0/go.mod h1:TA1xS00nchWmaBnEIxPSE5oHLuJBAVvqrtAnWBwBCVo=
+github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
+github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
 github.com/jtejido/go-wsq v0.0.3-beta h1:+cBYagcYC52uTzXvtu5HUGzSiL7nLk9BGzoXg7ci++c=
 github.com/jtejido/go-wsq v0.0.3-beta/go.mod h1:v1m/gjV3+rqhdDA9AO+qUBWi8BM7KqYmluDwG9wc0mk=
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
@@ -15,12 +17,6 @@ github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e h1:fD57ERR4JtEqsWb
 github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e/go.mod h1:zD1mROLANZcx1PVRCS0qkT7pwLkGfwJo4zjcN/Tysno=
 github.com/spakin/netpbm v1.3.0 h1:eDX7VvrkN5sHXW0luZXRA4AKDlLmu0E5sNxJ7VSTwxc=
 github.com/spakin/netpbm v1.3.0/go.mod h1:Q+ep6vNv1G44qSWp0wt3Y9o1m/QXjmaXZIFC0PMVpq0=
-github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.2 h1:6ZY3iu8To1PFbEl0hB14oyVKyGf9B9OKjdoXwvgwmpQ=
-github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.2/go.mod h1:2aa6dqmKG7NG7xsyJ8GNpACgQISYGwGnee+an+1IIRc=
-github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.3 h1:vJAHhyX/h6HmWzBcBONX0tofj86uS6Pm43Zrf2RxlBc=
-github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.3/go.mod h1:2aa6dqmKG7NG7xsyJ8GNpACgQISYGwGnee+an+1IIRc=
-github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.4 h1:Vb//t5X0iWeucqePj1WHNQIrULTQJQ6GzOv9sdbXCus=
-github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.4/go.mod h1:2aa6dqmKG7NG7xsyJ8GNpACgQISYGwGnee+an+1IIRc=
 github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.5 h1:KH97bqjz3BFo2e3l9z2VkWHyt3eihVKu/duE94BP8K4=
 github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk v0.1.5/go.mod h1:2aa6dqmKG7NG7xsyJ8GNpACgQISYGwGnee+an+1IIRc=
 github.com/warnakulasuriya-fds-e23/go-sourceafis-fork v0.0.0-20250620042209-ae068fce65ee h1:zOcVKoeh82c8s/IJyxxMh2eNzA5RPLgc/VaVlqI33T8=
