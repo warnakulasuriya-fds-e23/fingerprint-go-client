@@ -5,5 +5,4 @@ type Configuration struct {
 	ImagesDir                 string `toml:"imagesdir"`
 	CborDir                   string `toml:"cbordir"`
 	TimeoutSec                int    `toml:"timeoutsec"`
-	TestKey                   string `toml:"testkey"`
 }

@@ -14,6 +14,7 @@ import (
 )
 
 func (client *Httpclientimpl) matchTemplateRequest(probe *templates.SearchTemplate, candidate *templates.SearchTemplate) (isMatch bool, err error) {
+	accessToken := client.getAccessToken()
 	client.SetOrAddHeaderValueAccordingToKey("Content-Type", "application/json")
 	probeBytes, err := client.sdk.GetAsByteArray(probe)
 	if err != nil {
@@ -49,6 +50,7 @@ func (client *Httpclientimpl) matchTemplateRequest(probe *templates.SearchTempla
 		return
 	}
 
+	client.SetOrAddHeaderValueAccordingToKey("Authorization", "Bearer "+accessToken)
 	for _, headerKeyValuePair := range client.headerKeyValueArray {
 		req.Header.Add(headerKeyValuePair.key, headerKeyValuePair.value)
 	}

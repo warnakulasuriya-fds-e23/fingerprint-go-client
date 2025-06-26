@@ -15,6 +15,7 @@ import (
 )
 
 func (client *Httpclientimpl) enrollTemplateRequest(newEntry *templates.SearchTemplate, id string) (message string, err error) {
+	accessToken := client.getAccessToken()
 	client.SetOrAddHeaderValueAccordingToKey("Content-Type", "application/json")
 	message = ""
 	newEntryData, err := client.sdk.GetAsByteArray(newEntry)
@@ -39,6 +40,7 @@ func (client *Httpclientimpl) enrollTemplateRequest(newEntry *templates.SearchTe
 		log.Fatal(err.Error())
 	}
 
+	client.SetOrAddHeaderValueAccordingToKey("Authorization", "Bearer "+accessToken)
 	for _, headerKeyValuePair := range client.headerKeyValueArray {
 		req.Header.Add(headerKeyValuePair.key, headerKeyValuePair.value)
 	}

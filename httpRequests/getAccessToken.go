@@ -1,4 +1,4 @@
-package tests
+package httprequests
 
 import (
 	"bytes"
@@ -21,7 +21,7 @@ type tokenResponseObject struct {
 	ErrorDescription string `json:"error_description,omitempty"`
 }
 
-func Test9() {
+func (client *Httpclientimpl) getAccessToken() string {
 	tokenEndpoint := os.Getenv("TOKEN_ENDPOINT")
 	data := url.Values{}
 	data.Set("grant_type", "client_credentials")
@@ -37,8 +37,8 @@ func Test9() {
 	req.Header.Add("Authorization", "Basic "+authHeadervalue)
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 
-	client := &http.Client{}
-	res, err := client.Do(req)
+	internalclient := &http.Client{}
+	res, err := internalclient.Do(req)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
@@ -54,5 +54,5 @@ func Test9() {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	println(resObj.AccessToken)
+	return resObj.AccessToken
 }
