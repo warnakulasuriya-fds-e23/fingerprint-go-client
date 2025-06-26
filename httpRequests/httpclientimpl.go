@@ -66,13 +66,13 @@ func (client *Httpclientimpl) ClearAddedHeaderKeyValuePairs() {
 }
 
 // TODO: Implement proper error handling for the http Request methods
-func (client *Httpclientimpl) MatchTemplates(probe *templates.SearchTemplate, candidate *templates.SearchTemplate) (isMatch bool) {
+func (client *Httpclientimpl) MatchTemplates(probe *templates.SearchTemplate, candidate *templates.SearchTemplate) (isMatch bool, err error) {
 
-	isMatch = client.matchTemplate(probe, candidate)
+	isMatch, err = client.matchTemplateRequest(probe, candidate)
 	return
 }
-func (client *Httpclientimpl) IdentifyTemplate(probe *templates.SearchTemplate) (isMatched bool, discoveredId string) {
-	isMatched, discoveredId = client.identifyTemplateRequest(probe)
+func (client *Httpclientimpl) IdentifyTemplate(probe *templates.SearchTemplate) (isMatched bool, discoveredId string, err error) {
+	isMatched, discoveredId, err = client.identifyTemplateRequest(probe)
 	return
 }
 func (client *Httpclientimpl) EnrollTemplate(newEntry *templates.SearchTemplate, id string) (message string, err error) {
@@ -93,8 +93,7 @@ func (client *Httpclientimpl) MatchTemplatesFilesMethod(probeFilePath string, ca
 		err = fmt.Errorf("error occured while extractin the template for the candidate file, %w", err)
 		return
 	}
-	isMatch = client.matchTemplate(probe, candidate)
-	err = nil
+	isMatch, err = client.matchTemplateRequest(probe, candidate)
 	return
 }
 func (client *Httpclientimpl) IdentifyTemplateFilesMethod(probeFilePath string) (isMatched bool, discoveredId string, err error) {
@@ -106,8 +105,7 @@ func (client *Httpclientimpl) IdentifyTemplateFilesMethod(probeFilePath string) 
 		err = fmt.Errorf("error occured while extracting the template for the probe file, %w", err)
 		return
 	}
-	isMatched, discoveredId = client.identifyTemplateRequest(probe)
-	err = nil
+	isMatched, discoveredId, err = client.identifyTemplateRequest(probe)
 	return
 }
 func (client *Httpclientimpl) EnrollTemplateFilesMethod(newEntryFilePath string, id string) (message string, err error) {
