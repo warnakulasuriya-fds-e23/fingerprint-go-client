@@ -1,4 +1,3 @@
-orchestrationserveradress="http://localhost:4000"
 imagesdir="/home/dheera/FingerPrintDatabases/smallPNGDataset/"
 cbordir="/home/dheera/FingerPrintDatabases/cborDirectory2ForGo/"
 timeoutsec=10

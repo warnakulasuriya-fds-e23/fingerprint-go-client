@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/base64"
 	"encoding/json"
-	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -33,7 +32,6 @@ func (client *Httpclientimpl) getAccessToken() string {
 	consumerKey := os.Getenv("CONSUMMER_KEY")
 	consumerSecret := os.Getenv("CONSUMER_SECRET")
 	authHeadervalue := base64.StdEncoding.EncodeToString([]byte(consumerKey + ":" + consumerSecret))
-	fmt.Println(authHeadervalue)
 	req.Header.Add("Authorization", "Basic "+authHeadervalue)
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 
@@ -46,8 +44,6 @@ func (client *Httpclientimpl) getAccessToken() string {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	responseBodyString := string(bodybytes)
-	fmt.Println(responseBodyString)
 
 	var resObj tokenResponseObject
 	err = json.Unmarshal(bodybytes, &resObj)

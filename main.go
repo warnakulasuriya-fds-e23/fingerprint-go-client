@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
+	httprequests "github.com/warnakulasuriya-fds-e23/fingerprint-go-client/httpRequests"
 	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/tests"
 )
 
@@ -19,10 +20,8 @@ func main() {
 			log.Println(".env successfully loaded")
 		}
 	}
-	// client := httprequests.NewHttpClientImpl()
-	// config := configtomlreader.ConfigTomlReader()
-	// client.SetOrAddHeaderValueAccordingToKey("Test-Key", config.TestKey)
+	client := httprequests.NewHttpClientImpl()
 
-	tests.Test9()
+	tests.Test7(client)
 	// uploader.Uploader(client)
 }

@@ -3,6 +3,7 @@ package httprequests
 import (
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/configtomlreader"
 	"github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk/core"
@@ -37,7 +38,7 @@ func NewHttpClientImpl() *Httpclientimpl {
 	}
 
 	c := &Httpclientimpl{
-		orchestrationServerAdress: config.OrchestrationServerAdress,
+		orchestrationServerAdress: os.Getenv("ORCHESTRATION_SERVER_ADRESS"),
 		imagesDir:                 config.ImagesDir,
 		cborDir:                   config.CborDir,
 		sdk:                       sdk,
