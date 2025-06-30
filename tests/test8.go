@@ -9,6 +9,7 @@ import (
 )
 
 func Test8(client *httprequests.Httpclientimpl) {
+	fmt.Println("Enroll endpoint test")
 	var NewEntryImagePath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/DB3_B107_1.png"
 	t := time.Now()
 	message, err := client.EnrollTemplateFilesMethod(NewEntryImagePath, "testuser1")

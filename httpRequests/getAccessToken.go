@@ -61,7 +61,7 @@ func (client *Httpclientimpl) getAccessToken() string {
 		}
 
 		client.expiryTime = time.Now().Add(time.Duration(resObj.ExpiresIn) * time.Second)
-
+		client.accessToken = resObj.AccessToken
 		return resObj.AccessToken
 	}
 

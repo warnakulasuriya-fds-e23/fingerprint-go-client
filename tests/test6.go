@@ -9,6 +9,7 @@ import (
 )
 
 func Test6(client *httprequests.Httpclientimpl) {
+	fmt.Println("Match endpoint test")
 	var probeImagePath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/DB1_B101_1.png"
 	var matchingImagePath string = probeImagePath
 	var nonMatchingImagePath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/DB1_B102_1.png"

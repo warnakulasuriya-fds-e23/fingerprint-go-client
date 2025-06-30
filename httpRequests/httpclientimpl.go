@@ -49,6 +49,7 @@ func NewHttpClientImpl() *Httpclientimpl {
 		cborDir:                   config.CborDir,
 		sdk:                       sdk,
 	}
+	c.getAccessToken()
 	return c
 }
 
