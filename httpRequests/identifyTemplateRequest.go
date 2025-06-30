@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"time"
 
 	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/requestobjects"
 	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/responseobjects"
@@ -14,7 +15,12 @@ import (
 )
 
 func (client *Httpclientimpl) identifyTemplateRequest(probe *templates.SearchTemplate) (isMatched bool, discoveredId string, err error) {
-	accessToken := client.getAccessToken()
+	var accessToken string
+	if client.accessToken == "" || client.expiryTime.Equal(time.Now()) || client.expiryTime.Before(time.Now().Add(5*time.Second)) {
+		accessToken = client.getAccessToken()
+	} else {
+		accessToken = client.accessToken
+	}
 	client.SetOrAddHeaderValueAccordingToKey("Content-Type", "application/json")
 	probeBytes, err := client.sdk.GetAsByteArray(probe)
 	if err != nil {

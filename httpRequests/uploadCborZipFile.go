@@ -10,10 +10,16 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"time"
 )
 
 func (client *Httpclientimpl) uploadCborZipFile(zipFilePath string) error {
-	accessToken := client.getAccessToken()
+	var accessToken string
+	if client.accessToken == "" || client.expiryTime.Equal(time.Now()) || client.expiryTime.Before(time.Now().Add(5*time.Second)) {
+		accessToken = client.getAccessToken()
+	} else {
+		accessToken = client.accessToken
+	}
 	file, err := os.Open(zipFilePath)
 	if err != nil {
 		return fmt.Errorf("[uploadCborZipFile]failed to open file %s: %w", zipFilePath, err)

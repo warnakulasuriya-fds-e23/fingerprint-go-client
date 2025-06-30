@@ -28,7 +28,7 @@ func isTokenExpired(token string) {
 func (client *Httpclientimpl) getAccessToken() string {
 	client.mutex.Lock()
 	defer client.mutex.Unlock()
-	if client.accessToken == "" || client.expiryTime == time.Now() || client.expiryTime.Before(time.Now().Add(5*time.Second)) {
+	if client.accessToken == "" || client.expiryTime.Equal(time.Now()) || client.expiryTime.Before(time.Now().Add(5*time.Second)) {
 
 		tokenEndpoint := os.Getenv("TOKEN_ENDPOINT")
 		data := url.Values{}
