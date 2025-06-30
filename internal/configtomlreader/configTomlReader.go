@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 
 	"github.com/BurntSushi/toml"
-	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/configuration"
+	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/configuration"
 )
 
 func ConfigTomlReader() configuration.Configuration {

@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/configtomlreader"
+	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/configtomlreader"
 	"github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk/core"
 	"github.com/warnakulasuriya-fds-e23/go-sourceafis-fork/templates"
 )

@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	httprequests "github.com/warnakulasuriya-fds-e23/fingerprint-go-client/httpRequests"
+	httprequests "github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/httprequests"
 )
 
 func Test8(client *httprequests.Httpclientimpl) {
