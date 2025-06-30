@@ -73,7 +73,6 @@ func (client *Httpclientimpl) ClearAddedHeaderKeyValuePairs() {
 	client.headerKeyValueArray = make([]httpHeaderKeyValue, 0)
 }
 
-// TODO: Implement proper error handling for the http Request methods
 func (client *Httpclientimpl) MatchTemplates(probe *templates.SearchTemplate, candidate *templates.SearchTemplate) (isMatch bool, err error) {
 
 	isMatch, err = client.matchTemplateRequest(probe, candidate)
