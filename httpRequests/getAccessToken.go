@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"time"
 )
 
 type tokenResponseObject struct {
@@ -20,35 +21,49 @@ type tokenResponseObject struct {
 	ErrorDescription string `json:"error_description,omitempty"`
 }
 
+func isTokenExpired(token string) {
+
+}
+
 func (client *Httpclientimpl) getAccessToken() string {
-	tokenEndpoint := os.Getenv("TOKEN_ENDPOINT")
-	data := url.Values{}
-	data.Set("grant_type", "client_credentials")
-	requestBody := bytes.NewBufferString(data.Encode())
-	req, err := http.NewRequest("POST", tokenEndpoint, requestBody)
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-	consumerKey := os.Getenv("CONSUMMER_KEY")
-	consumerSecret := os.Getenv("CONSUMER_SECRET")
-	authHeadervalue := base64.StdEncoding.EncodeToString([]byte(consumerKey + ":" + consumerSecret))
-	req.Header.Add("Authorization", "Basic "+authHeadervalue)
-	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+	client.mutex.Lock()
+	defer client.mutex.Unlock()
+	if client.accessToken == "" || client.expiryTime == time.Now() || client.expiryTime.Before(time.Now().Add(5*time.Second)) {
 
-	internalclient := &http.Client{}
-	res, err := internalclient.Do(req)
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-	bodybytes, err := io.ReadAll(res.Body)
-	if err != nil {
-		log.Fatal(err.Error())
+		tokenEndpoint := os.Getenv("TOKEN_ENDPOINT")
+		data := url.Values{}
+		data.Set("grant_type", "client_credentials")
+		requestBody := bytes.NewBufferString(data.Encode())
+		req, err := http.NewRequest("POST", tokenEndpoint, requestBody)
+		if err != nil {
+			log.Fatal(err.Error())
+		}
+		consumerKey := os.Getenv("CONSUMMER_KEY")
+		consumerSecret := os.Getenv("CONSUMER_SECRET")
+		authHeadervalue := base64.StdEncoding.EncodeToString([]byte(consumerKey + ":" + consumerSecret))
+		req.Header.Add("Authorization", "Basic "+authHeadervalue)
+		req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+
+		internalclient := &http.Client{}
+		res, err := internalclient.Do(req)
+		if err != nil {
+			log.Fatal(err.Error())
+		}
+		bodybytes, err := io.ReadAll(res.Body)
+		if err != nil {
+			log.Fatal(err.Error())
+		}
+
+		var resObj tokenResponseObject
+		err = json.Unmarshal(bodybytes, &resObj)
+		if err != nil {
+			log.Fatal(err.Error())
+		}
+
+		client.expiryTime = time.Now().Add(time.Duration(resObj.ExpiresIn) * time.Second)
+
+		return resObj.AccessToken
 	}
 
-	var resObj tokenResponseObject
-	err = json.Unmarshal(bodybytes, &resObj)
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-	return resObj.AccessToken
+	return client.accessToken
 }

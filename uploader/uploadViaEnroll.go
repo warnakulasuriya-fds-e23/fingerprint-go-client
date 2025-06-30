@@ -11,7 +11,7 @@ import (
 //	type Uploader struct {
 //		uploadTo string
 //	}
-func Uploader(client *httprequests.Httpclientimpl) {
+func UploadViaEnroll(client *httprequests.Httpclientimpl) {
 	var galleryDummy []*entities.SearchTemplateRecord
 	sdkutils.LoadCborDirToGallery(&galleryDummy, "/home/dheera/FingerPrintDatabases/duplicateImpressionsFiltered/cborGoDirectory/")
 	for _, record := range galleryDummy {

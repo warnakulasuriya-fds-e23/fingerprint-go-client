@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"sync"
+	"time"
 
 	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/configtomlreader"
 	"github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk/core"
@@ -11,9 +13,10 @@ import (
 )
 
 const (
-	MatchTemplatesEndpoint   = "/api/fingerprint/match"
-	IdentifyTemplateEndpoint = "/api/fingerprint/identify"
-	EnrollTemplateEndpoint   = "/api/fingerprint/enroll"
+	MatchTemplatesEndpoint    = "/api/fingerprint/match"
+	IdentifyTemplateEndpoint  = "/api/fingerprint/identify"
+	EnrollTemplateEndpoint    = "/api/fingerprint/enroll"
+	UploadCborZipFileEndpoint = "/api/gallery/upload-cbor-zip"
 )
 
 type httpHeaderKeyValue struct {
@@ -27,6 +30,9 @@ type Httpclientimpl struct {
 	cborDir                   string
 	sdk                       *core.SDKCore
 	headerKeyValueArray       []httpHeaderKeyValue
+	accessToken               string
+	expiryTime                time.Time
+	mutex                     sync.Mutex
 }
 
 func NewHttpClientImpl() *Httpclientimpl {
@@ -118,4 +124,7 @@ func (client *Httpclientimpl) EnrollTemplateFilesMethod(newEntryFilePath string,
 	}
 	message, err = client.enrollTemplateRequest(newEntry, id)
 	return
+}
+func (client *Httpclientimpl) UploadCborZipFile(zipFilePath string) error {
+	return client.uploadCborZipFile(zipFilePath)
 }
