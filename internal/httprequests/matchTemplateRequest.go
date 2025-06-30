@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"os"
 	"time"
 
 	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/requestobjects"
@@ -39,7 +40,7 @@ func (client *Httpclientimpl) matchTemplateRequest(probe *templates.SearchTempla
 		return
 	}
 
-	obj := requestobjects.MatchTemplatesReqObj{ProbeCbor: *probeBytes, CandidateCbor: *candidateBytes}
+	obj := requestobjects.MatchTemplatesReqObj{ProbeCbor: *probeBytes, CandidateCbor: *candidateBytes, ClientId: os.Getenv("DEVICE_ID")}
 	jsonobj, err := json.Marshal(obj)
 	if err != nil {
 		isMatch = false

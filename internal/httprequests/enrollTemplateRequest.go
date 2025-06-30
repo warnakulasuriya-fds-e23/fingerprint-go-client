@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 	"time"
 
 	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/requestobjects"
@@ -33,7 +34,7 @@ func (client *Httpclientimpl) enrollTemplateRequest(newEntry *templates.SearchTe
 		err = fmt.Errorf("error occured while trying to convert newEntry template to Byte array, %w", err)
 		return
 	}
-	reqObj := requestobjects.EnrollTemplateReqObj{Data: *newEntryData, Id: id}
+	reqObj := requestobjects.EnrollTemplateReqObj{Data: *newEntryData, Id: id, ClientId: os.Getenv("DEVICE_ID")}
 	jsonobj, err := json.Marshal(reqObj)
 	if err != nil {
 		err = fmt.Errorf("error occured while trying to convert reqObj to json, %w", err)
