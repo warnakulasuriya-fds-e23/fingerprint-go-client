@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -21,11 +21,7 @@ type tokenResponseObject struct {
 	ErrorDescription string `json:"error_description,omitempty"`
 }
 
-func isTokenExpired(token string) {
-
-}
-
-func (client *Httpclientimpl) getAccessToken() string {
+func (client *Httpclientimpl) getAccessToken() (token string, err error) {
 	client.mutex.Lock()
 	defer client.mutex.Unlock()
 	if client.accessToken == "" || client.expiryTime.Equal(time.Now()) || client.expiryTime.Before(time.Now().Add(5*time.Second)) {
@@ -34,9 +30,11 @@ func (client *Httpclientimpl) getAccessToken() string {
 		data := url.Values{}
 		data.Set("grant_type", "client_credentials")
 		requestBody := bytes.NewBufferString(data.Encode())
-		req, err := http.NewRequest("POST", tokenEndpoint, requestBody)
-		if err != nil {
-			log.Fatal(err.Error())
+		req, errNewReq := http.NewRequest("POST", tokenEndpoint, requestBody)
+		if errNewReq != nil {
+			token = ""
+			err = fmt.Errorf("error while creating a post request for the tokenEndpoint : %w", errNewReq)
+			return
 		}
 		consumerKey := os.Getenv("CONSUMMER_KEY")
 		consumerSecret := os.Getenv("CONSUMER_SECRET")
@@ -45,25 +43,34 @@ func (client *Httpclientimpl) getAccessToken() string {
 		req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 
 		internalclient := &http.Client{}
-		res, err := internalclient.Do(req)
-		if err != nil {
-			log.Fatal(err.Error())
+		res, errReqSend := internalclient.Do(req)
+		if errReqSend != nil {
+			token = ""
+			err = fmt.Errorf("error while sending or recieving post request : %w", errReqSend)
+			return
 		}
-		bodybytes, err := io.ReadAll(res.Body)
-		if err != nil {
-			log.Fatal(err.Error())
+		bodybytes, errReadAll := io.ReadAll(res.Body)
+		if errReadAll != nil {
+			token = ""
+			err = fmt.Errorf("error while reading bytes of response body : %w", errReadAll)
+			return
 		}
 
 		var resObj tokenResponseObject
-		err = json.Unmarshal(bodybytes, &resObj)
-		if err != nil {
-			log.Fatal(err.Error())
+		errUnMarshal := json.Unmarshal(bodybytes, &resObj)
+		if errUnMarshal != nil {
+			token = ""
+			err = fmt.Errorf("error while running json unmarshal for the read bytes of the response body : %w", errUnMarshal)
+			return
 		}
 
 		client.expiryTime = time.Now().Add(time.Duration(resObj.ExpiresIn) * time.Second)
 		client.accessToken = resObj.AccessToken
-		return resObj.AccessToken
+
 	}
 
-	return client.accessToken
+	token = client.accessToken
+	err = nil
+	return
+
 }

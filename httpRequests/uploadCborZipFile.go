@@ -16,10 +16,15 @@ import (
 func (client *Httpclientimpl) uploadCborZipFile(zipFilePath string) error {
 	var accessToken string
 	if client.accessToken == "" || client.expiryTime.Equal(time.Now()) || client.expiryTime.Before(time.Now().Add(5*time.Second)) {
-		accessToken = client.getAccessToken()
+		var err error
+		accessToken, err = client.getAccessToken()
+		if err != nil {
+			return fmt.Errorf("error while trying get access token ,either new token or existing token, %w", err)
+		}
 	} else {
 		accessToken = client.accessToken
 	}
+
 	file, err := os.Open(zipFilePath)
 	if err != nil {
 		return fmt.Errorf("[uploadCborZipFile]failed to open file %s: %w", zipFilePath, err)
