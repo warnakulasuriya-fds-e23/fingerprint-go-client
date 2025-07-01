@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -78,6 +79,21 @@ func (client *Httpclientimpl) identifyTemplateRequest(probe *templates.SearchTem
 		isMatched = false
 		discoveredId = "none"
 		err = fmt.Errorf("[identifyTemplateRequest] error while trying to read bytest from response body: %w", err)
+		return
+	}
+
+	log.Println(resp.Status)
+	log.Println(string(bodyBytes))
+	if resp.StatusCode != 200 {
+		var resObj responseobjects.ErrorResObj
+		err = json.Unmarshal(bodyBytes, &resObj)
+		if err != nil {
+			err = fmt.Errorf("error occured while runnig json.Unmarshal on response bytes , %w", err)
+			return
+		}
+		isMatched = false
+		discoveredId = "none"
+		err = fmt.Errorf("error occured in bio-sdk-service , %s", resObj.Message)
 		return
 	}
 	var resobj responseobjects.IdentifyTemplateResObje
