@@ -69,6 +69,19 @@ func (client *Httpclientimpl) enrollTemplateRequest(newEntry *templates.SearchTe
 		err = fmt.Errorf("error occured while reading response bytes using io.ReadAll , %w", err)
 		return
 	}
+	log.Println(resp.Status)
+	log.Println(string(bodyBytes))
+	if resp.StatusCode != 200 {
+		var resObj responseobjects.ErrorResObj
+		err = json.Unmarshal(bodyBytes, &resObj)
+		if err != nil {
+			err = fmt.Errorf("error occured while runnig json.Unmarshal on response bytes , %w", err)
+			return
+		}
+		message = ""
+		err = fmt.Errorf("error occured in bio-sdk-service , %s", resObj.Message)
+		return
+	}
 	var resObj responseobjects.EnrollTemplateResObj
 	err = json.Unmarshal(bodyBytes, &resObj)
 	if err != nil {

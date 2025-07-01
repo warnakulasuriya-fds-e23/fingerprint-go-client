@@ -22,6 +22,6 @@ func main() {
 	}
 	client := httprequests.NewHttpClientImpl()
 
-	tests.Test7(client)
+	tests.Test8(client)
 	// uploader.Uploader(client)
 }
