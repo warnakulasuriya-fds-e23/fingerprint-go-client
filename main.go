@@ -23,6 +23,6 @@ func main() {
 	//TODO: try to utilize github.com/tidwall/gjson"
 	client := httprequests.NewHttpClientImpl()
 
-	tests.Test7(client)
+	tests.Test11(client)
 	// uploader.Uploader(client)
 }

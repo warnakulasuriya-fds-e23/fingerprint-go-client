@@ -16,6 +16,7 @@ const (
 	MatchTemplatesEndpoint    = "/api/fingerprint/match"
 	IdentifyTemplateEndpoint  = "/api/fingerprint/identify"
 	EnrollTemplateEndpoint    = "/api/fingerprint/enroll"
+	AuthorizeTemplateEndpoint = "/api/fingerprint/authorize"
 	UploadCborZipFileEndpoint = "/api/gallery/upload-cbor-zip"
 )
 
@@ -86,6 +87,10 @@ func (client *Httpclientimpl) EnrollTemplate(newEntry *templates.SearchTemplate,
 	message, err = client.enrollTemplateRequest(newEntry, id)
 	return
 }
+func (client *Httpclientimpl) AuthorizeTemplate(template *templates.SearchTemplate) (status string, err error) {
+	status, err = client.authorizeTemplateRequest(template)
+	return
+}
 func (client *Httpclientimpl) MatchTemplatesFilesMethod(probeFilePath string, candidateFilePath string) (isMatch bool, err error) {
 	// TODO: move main content of function body to a seperate file
 	probe, err := client.sdk.Extract(probeFilePath)
@@ -123,6 +128,16 @@ func (client *Httpclientimpl) EnrollTemplateFilesMethod(newEntryFilePath string,
 		return
 	}
 	message, err = client.enrollTemplateRequest(newEntry, id)
+	return
+}
+func (client *Httpclientimpl) AuthorizeTemplateFilesMethod(templateFilePath string) (status string, err error) {
+	status = "client side extracting template from file"
+	template, err := client.sdk.Extract(templateFilePath)
+	if err != nil {
+		err = fmt.Errorf("error occured while extracting the template for the probe file, %w", err)
+		return
+	}
+	status, err = client.authorizeTemplateRequest(template)
 	return
 }
 func (client *Httpclientimpl) UploadCborZipFile(zipFilePath string) error {
