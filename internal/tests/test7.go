@@ -10,7 +10,7 @@ import (
 
 func Test7(client *httprequests.Httpclientimpl) {
 	fmt.Println("Identify endpoint test")
-	var probeImagePath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/DB3_B103_1.png"
+	var probeImagePath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/FCV2000_DB1_B101_1.png"
 
 	t := time.Now()
 	isMatched, discoveredId, err := client.IdentifyTemplateFilesMethod(probeImagePath)

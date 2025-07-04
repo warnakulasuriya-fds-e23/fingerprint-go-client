@@ -13,7 +13,8 @@ import (
 //	}
 func UploadViaEnroll(client *httprequests.Httpclientimpl) {
 	var galleryDummy []*entities.SearchTemplateRecord
-	sdkutils.LoadCborDirToGallery(&galleryDummy, "/home/dheera/FingerPrintDatabases/duplicateImpressionsFiltered/cborGoDirectory/")
+	sdkutils.LoadImagesDirToGallery(&galleryDummy, "/home/dheera/FingerPrintDatabases/veryLargePNGDataset")
+	// sdkutils.LoadCborDirToGallery(&galleryDummy, "/home/dheera/FingerPrintDatabases/duplicateImpressionsFiltered/cborGoDirectory/")
 	for _, record := range galleryDummy {
 
 		// req.Header.Add("accept", "text/plain")

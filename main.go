@@ -20,8 +20,9 @@ func main() {
 			log.Println(".env successfully loaded")
 		}
 	}
+	//TODO: try to utilize github.com/tidwall/gjson"
 	client := httprequests.NewHttpClientImpl()
 
-	tests.Test6(client)
+	tests.Test7(client)
 	// uploader.Uploader(client)
 }

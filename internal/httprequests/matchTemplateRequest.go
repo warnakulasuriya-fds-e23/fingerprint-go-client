@@ -81,17 +81,16 @@ func (client *Httpclientimpl) matchTemplateRequest(probe *templates.SearchTempla
 		err = fmt.Errorf("[matchTemplateRequest] error while reading bytes of response body : %w", err)
 		return
 	}
-	// log.Println(resp.Status)
-	// log.Println(string(bodyBytes))
+
 	if resp.StatusCode != 200 {
 		var resObj responseobjects.ErrorResObj
 		err = json.Unmarshal(bodyBytes, &resObj)
 		if err != nil {
-			err = fmt.Errorf("error occured while runnig json.Unmarshal on response bytes , %w", err)
+			err = fmt.Errorf("[matchTemplateRequest] error occured while runnig json.Unmarshal on response bytes , %w", err)
 			return
 		}
 		isMatch = false
-		err = fmt.Errorf("error occured in bio-sdk-service , %s", resObj.Message)
+		err = fmt.Errorf("[matchTemplateRequest] error occured in bio-sdk-service , %s", resObj.Message)
 		return
 	}
 	var responseobj responseobjects.MatchTemplatesResObj

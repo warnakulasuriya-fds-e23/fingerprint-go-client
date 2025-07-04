@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -21,7 +20,7 @@ func (client *Httpclientimpl) identifyTemplateRequest(probe *templates.SearchTem
 	if client.accessToken == "" || client.expiryTime.Equal(time.Now()) || client.expiryTime.Before(time.Now().Add(5*time.Second)) {
 		accessToken, err = client.getAccessToken()
 		if err != nil {
-			err = fmt.Errorf("error while trying get access token ,either new token or existing token, %w", err)
+			err = fmt.Errorf("identifyTemplateRequest] error while trying get access token ,either new token or existing token, %w", err)
 			return
 		}
 	} else {
@@ -82,18 +81,16 @@ func (client *Httpclientimpl) identifyTemplateRequest(probe *templates.SearchTem
 		return
 	}
 
-	log.Println(resp.Status)
-	log.Println(string(bodyBytes))
 	if resp.StatusCode != 200 {
 		var resObj responseobjects.ErrorResObj
 		err = json.Unmarshal(bodyBytes, &resObj)
 		if err != nil {
-			err = fmt.Errorf("error occured while runnig json.Unmarshal on response bytes , %w", err)
+			err = fmt.Errorf("[identifyTemplateRequest] error occured while runnig json.Unmarshal on response bytes , %w", err)
 			return
 		}
 		isMatched = false
 		discoveredId = "none"
-		err = fmt.Errorf("error occured in bio-sdk-service , %s", resObj.Message)
+		err = fmt.Errorf("[identifyTemplateRequest] error occured in sending to orchestration service , %s", resObj.Message)
 		return
 	}
 	var resobj responseobjects.IdentifyTemplateResObje
