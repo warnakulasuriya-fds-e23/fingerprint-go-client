@@ -45,7 +45,7 @@ func (client *Httpclientimpl) authorizeTemplateRequest(template *templates.Searc
 	requestBody := bytes.NewBuffer(jsonobj)
 
 	status = "client Side preparing request url"
-	urlString, err := url.JoinPath(client.orchestrationServerAdress, IdentifyTemplateEndpoint)
+	urlString, err := url.JoinPath(client.orchestrationServerAdress, AuthorizeTemplateEndpoint)
 	if err != nil {
 		err = fmt.Errorf("[authorizeTemplateRequest] error while trying join the base url %s with %s : %w", client.orchestrationServerAdress, IdentifyTemplateEndpoint, err)
 		return

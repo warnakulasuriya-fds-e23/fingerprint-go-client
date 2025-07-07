@@ -10,7 +10,7 @@ import (
 
 func Test11(client *httprequests.Httpclientimpl) {
 	fmt.Println("Authorize endpoint test")
-	var probeImagePath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/FCV2000_DB1_B101_1.png"
+	var probeImagePath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/FCV2004_DB1_B103_1.png"
 
 	t := time.Now()
 	status, err := client.AuthorizeTemplateFilesMethod(probeImagePath)
