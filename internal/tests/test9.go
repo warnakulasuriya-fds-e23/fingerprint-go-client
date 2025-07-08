@@ -22,6 +22,7 @@ type tokenResponseObject struct {
 }
 
 func Test9() {
+	fmt.Println("token endpoint test")
 	tokenEndpoint := os.Getenv("TOKEN_ENDPOINT")
 	data := url.Values{}
 	data.Set("grant_type", "client_credentials")

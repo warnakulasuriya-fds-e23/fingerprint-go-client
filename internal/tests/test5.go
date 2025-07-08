@@ -8,6 +8,7 @@ import (
 )
 
 func Test5() {
+	fmt.Println("identify test using fingerprint-go-sdk")
 	var fingerprintImagesDirectoryPath string = "/home/dheera/FingerPrintDatabases/smallPNGDataset/"
 	var cborDirectoryPath = "/home/dheera/FingerPrintDatabases/cborDirectory2ForGo/"
 	sdk, err := core.NewSDKCore(fingerprintImagesDirectoryPath, cborDirectoryPath)

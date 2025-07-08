@@ -22,6 +22,7 @@ func (c *TransparencyContents) Accept(key, mime string, data []byte) error {
 }
 
 func Test1() {
+	fmt.Println("matching test for go sourceafis")
 	var probeImagePath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/DB1_B101_1.png"
 	var matchingImagePath string = probeImagePath
 	var nonMatchingImagePath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/DB1_B102_2.png"

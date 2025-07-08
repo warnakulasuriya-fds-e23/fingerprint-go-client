@@ -8,6 +8,7 @@ import (
 )
 
 func Test4() {
+	fmt.Println("match test using fingerprint-go-sdk")
 	var probeImagePath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/DB1_B101_1.png"
 	var matchingImagePath string = probeImagePath
 	var nonMatchingImagePath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/DB1_B102_1.png"

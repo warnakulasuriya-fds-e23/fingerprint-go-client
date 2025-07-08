@@ -13,7 +13,7 @@ import (
 )
 
 func Test3() {
-	fmt.Println("loading files up from Image Dir and saving to Cbor Dir")
+	fmt.Println("identify test using go sourceafis")
 	var fingerprintImagesDirectoryPath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/"
 	// var cborDirectoryPath = "/home/dheera/FingerPrintDatabases/cborDirectory2ForGo/"
 
