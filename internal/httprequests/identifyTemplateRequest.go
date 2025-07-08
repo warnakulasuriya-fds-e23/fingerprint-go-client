@@ -34,7 +34,7 @@ func (client *Httpclientimpl) identifyTemplateRequest(probe *templates.SearchTem
 		err = fmt.Errorf("[identifyTemplateRequest] error while running GetAsByteArray for probe template : %w", err)
 		return
 	}
-	reqobj := requestobjects.IdentifyTemplateReqObj{ProbeCbor: *probeBytes, ClientId: os.Getenv("DEVICE_ID")}
+	reqobj := requestobjects.IdentifyTemplateReqObj{ProbeCbor: *probeBytes, DeviceId: os.Getenv("DEVICE_ID")}
 	jsonobj, err := json.Marshal(reqobj)
 	if err != nil {
 		isMatched = false

@@ -40,7 +40,7 @@ func (client *Httpclientimpl) matchTemplateRequest(probe *templates.SearchTempla
 		return
 	}
 
-	obj := requestobjects.MatchTemplatesReqObj{ProbeCbor: *probeBytes, CandidateCbor: *candidateBytes, ClientId: os.Getenv("DEVICE_ID")}
+	obj := requestobjects.MatchTemplatesReqObj{ProbeCbor: *probeBytes, CandidateCbor: *candidateBytes, DeviceId: os.Getenv("DEVICE_ID")}
 	jsonobj, err := json.Marshal(obj)
 	if err != nil {
 		isMatch = false

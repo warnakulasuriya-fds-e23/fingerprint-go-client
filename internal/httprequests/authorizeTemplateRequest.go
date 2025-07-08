@@ -35,7 +35,7 @@ func (client *Httpclientimpl) authorizeTemplateRequest(template *templates.Searc
 	}
 
 	status = "client Side preparing request body"
-	reqobj := requestobjects.IdentifyTemplateReqObj{ProbeCbor: *probeBytes, ClientId: os.Getenv("DEVICE_ID")}
+	reqobj := requestobjects.IdentifyTemplateReqObj{ProbeCbor: *probeBytes, DeviceId: os.Getenv("DEVICE_ID")}
 	jsonobj, err := json.Marshal(reqobj)
 	if err != nil {
 		err = fmt.Errorf("[authorizeTemplateRequest] error while running json marshal for identify template request object : %w", err)
