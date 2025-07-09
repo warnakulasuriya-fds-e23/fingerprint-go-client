@@ -1,4 +1,4 @@
-package httprequests
+package outgoing
 
 import (
 	"bytes"
@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-func (client *Httpclientimpl) uploadCborZipFile(zipFilePath string) error {
+func (client *OutgoingClient) uploadCborZipFile(zipFilePath string) error {
 	var accessToken string
 	if client.accessToken == "" || client.expiryTime.Equal(time.Now()) || client.expiryTime.Before(time.Now().Add(5*time.Second)) {
 		var err error

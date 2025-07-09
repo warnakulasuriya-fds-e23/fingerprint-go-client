@@ -1,4 +1,4 @@
-package httprequests
+package outgoing
 
 import (
 	"bytes"
@@ -21,7 +21,7 @@ type tokenResponseObject struct {
 	ErrorDescription string `json:"error_description,omitempty"`
 }
 
-func (client *Httpclientimpl) getAccessToken() (token string, err error) {
+func (client *OutgoingClient) getAccessToken() (token string, err error) {
 	client.mutex.Lock()
 	defer client.mutex.Unlock()
 	if client.accessToken == "" || client.expiryTime.Equal(time.Now()) || client.expiryTime.Before(time.Now().Add(5*time.Second)) {

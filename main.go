@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/httprequests"
+	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/outgoing"
 	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/tests"
 )
 
@@ -21,8 +21,9 @@ func main() {
 		}
 	}
 	//TODO: try to utilize github.com/tidwall/gjson"
-	client := httprequests.NewHttpClientImpl()
+	client := outgoing.NewOutgoingClient()
 
 	tests.Test11(client)
+	// tests.Test9()
 	// uploader.Uploader(client)
 }
