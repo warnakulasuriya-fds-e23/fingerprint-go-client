@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"sync"
 	"time"
 
 	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/configtomlreader"
@@ -33,7 +32,6 @@ type OutgoingClient struct {
 	headerKeyValueArray       []httpHeaderKeyValue
 	accessToken               string
 	expiryTime                time.Time
-	mutex                     sync.Mutex
 }
 
 func NewOutgoingClient() *OutgoingClient {

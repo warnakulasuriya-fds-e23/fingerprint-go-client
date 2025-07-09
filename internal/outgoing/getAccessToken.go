@@ -22,8 +22,6 @@ type tokenResponseObject struct {
 }
 
 func (client *OutgoingClient) getAccessToken() (token string, err error) {
-	client.mutex.Lock()
-	defer client.mutex.Unlock()
 	if client.accessToken == "" || client.expiryTime.Equal(time.Now()) || client.expiryTime.Before(time.Now().Add(5*time.Second)) {
 
 		tokenEndpoint := os.Getenv("TOKEN_ENDPOINT")
