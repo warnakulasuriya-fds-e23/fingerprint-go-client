@@ -1,6 +1,6 @@
 package configuration
 
-type Configuration struct {
+type ConfigurationToml struct {
 	ImagesDir  string `toml:"imagesdir"`
 	CborDir    string `toml:"cbordir"`
 	TimeoutSec int    `toml:"timeoutsec"`
