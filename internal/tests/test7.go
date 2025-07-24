@@ -5,10 +5,10 @@ import (
 	"log"
 	"time"
 
-	httprequests "github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/httprequests"
+	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/outgoing"
 )
 
-func Test7(client *httprequests.Httpclientimpl) {
+func Test7(client *outgoing.OutgoingClient) {
 	fmt.Println("Identify endpoint test")
 	var probeImagePath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/FCV2000_DB1_B101_1.png"
 

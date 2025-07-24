@@ -3,7 +3,7 @@ package uploader
 import (
 	"fmt"
 
-	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/httprequests"
+	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/outgoing"
 	"github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk/entities"
 	"github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk/sdkutils"
 )
@@ -11,7 +11,7 @@ import (
 //	type Uploader struct {
 //		uploadTo string
 //	}
-func UploadViaEnroll(client *httprequests.Httpclientimpl) {
+func UploadViaEnroll(client *outgoing.OutgoingClient) {
 	var galleryDummy []*entities.SearchTemplateRecord
 	sdkutils.LoadImagesDirToGallery(&galleryDummy, "/home/dheera/FingerPrintDatabases/veryLargePNGDataset")
 	// sdkutils.LoadCborDirToGallery(&galleryDummy, "/home/dheera/FingerPrintDatabases/duplicateImpressionsFiltered/cborGoDirectory/")

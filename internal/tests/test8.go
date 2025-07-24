@@ -5,10 +5,10 @@ import (
 	"log"
 	"time"
 
-	httprequests "github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/httprequests"
+	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/outgoing"
 )
 
-func Test8(client *httprequests.Httpclientimpl) {
+func Test8(client *outgoing.OutgoingClient) {
 	fmt.Println("Enroll endpoint test")
 	var NewEntryImagePath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/DB3_B107_1.png"
 	t := time.Now()

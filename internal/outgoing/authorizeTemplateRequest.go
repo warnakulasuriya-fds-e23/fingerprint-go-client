@@ -1,4 +1,4 @@
-package httprequests
+package outgoing
 
 import (
 	"bytes"
@@ -15,7 +15,7 @@ import (
 	"github.com/warnakulasuriya-fds-e23/go-sourceafis-fork/templates"
 )
 
-func (client *Httpclientimpl) authorizeTemplateRequest(template *templates.SearchTemplate) (status string, err error) {
+func (client *OutgoingClient) authorizeTemplateRequest(template *templates.SearchTemplate) (status string, err error) {
 	var accessToken string
 	status = "client side Access Token setup"
 	if client.accessToken == "" || client.expiryTime.Equal(time.Now()) || client.expiryTime.Before(time.Now().Add(5*time.Second)) {
