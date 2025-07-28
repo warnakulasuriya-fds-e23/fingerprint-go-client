@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 
 	"github.com/gin-gonic/gin"
-	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/responseobjects"
+	"github.com/warnakulasuriya-fds-e23/biometric-interface-service/internal/responseobjects"
 )
 
 func (controller *IncomingController) fileSubmitHandler(c *gin.Context) {

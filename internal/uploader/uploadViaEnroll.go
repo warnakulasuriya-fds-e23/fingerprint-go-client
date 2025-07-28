@@ -3,7 +3,7 @@ package uploader
 import (
 	"fmt"
 
-	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/outgoing"
+	"github.com/warnakulasuriya-fds-e23/biometric-interface-service/internal/outgoing"
 	"github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk/entities"
 	"github.com/warnakulasuriya-fds-e23/fingerprint-go-sdk/sdkutils"
 )

@@ -7,8 +7,8 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/incoming"
-	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/outgoing"
+	"github.com/warnakulasuriya-fds-e23/biometric-interface-service/internal/incoming"
+	"github.com/warnakulasuriya-fds-e23/biometric-interface-service/internal/outgoing"
 )
 
 func main() {

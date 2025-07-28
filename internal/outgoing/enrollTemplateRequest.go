@@ -11,8 +11,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/requestobjects"
-	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/responseobjects"
+	"github.com/warnakulasuriya-fds-e23/biometric-interface-service/internal/requestobjects"
+	"github.com/warnakulasuriya-fds-e23/biometric-interface-service/internal/responseobjects"
 	"github.com/warnakulasuriya-fds-e23/go-sourceafis-fork/templates"
 )
 
