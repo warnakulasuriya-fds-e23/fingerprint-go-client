@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/warnakulasuriya-fds-e23/fingerprint-go-client/internal/outgoing"
+	"github.com/warnakulasuriya-fds-e23/biometric-interface-service/internal/outgoing"
 )
 
 func Test10(client *outgoing.OutgoingClient) {
