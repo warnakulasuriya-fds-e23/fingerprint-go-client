@@ -13,7 +13,7 @@ func Test11(client *outgoing.OutgoingClient) {
 	var probeImagePath string = "/home/dheera/FingerPrintDatabases/veryLargePNGDataset/FCV2004_DB1_B103_1.png"
 
 	t := time.Now()
-	status, err := client.AuthorizeTemplateFilesMethod(probeImagePath)
+	status, err := client.AuthorizeTemplateFilesMethod(probeImagePath,"null")
 	if err != nil {
 		log.Fatal(err.Error())
 	}

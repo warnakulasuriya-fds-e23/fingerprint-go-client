@@ -22,6 +22,11 @@ func (controller *IncomingController) fileSubmitHandler(c *gin.Context) {
 		return
 	}
 
+	deviceId := c.PostForm("deviceid")
+	if deviceId == "" {
+		deviceId = "null"
+	}
+
 	currentDirectory, errGetWorkingDir := os.Getwd()
 	if errGetWorkingDir != nil {
 		resObj := responseobjects.ErrorResObj{Message: "error  unable to get working directory of biometric-interface-service : " + errGetWorkingDir.Error()}
@@ -31,7 +36,7 @@ func (controller *IncomingController) fileSubmitHandler(c *gin.Context) {
 	imageFilePath := filepath.Join(currentDirectory, "/tmp", file.Filename)
 	// Upload the file to specific dst.
 	c.SaveUploadedFile(file, imageFilePath)
-	status, errOutgoing := controller.outgoingClient.AuthorizeTemplateFilesMethod(imageFilePath)
+	status, errOutgoing := controller.outgoingClient.AuthorizeTemplateFilesMethod(imageFilePath,deviceId)
 	if errOutgoing != nil {
 		resObj := responseobjects.ErrorResObj{Message: "error  sending outgoing : " + errOutgoing.Error()}
 		c.IndentedJSON(http.StatusInternalServerError, resObj)

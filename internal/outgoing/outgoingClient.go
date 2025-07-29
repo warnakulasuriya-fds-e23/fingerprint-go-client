@@ -85,8 +85,8 @@ func (client *OutgoingClient) EnrollTemplate(newEntry *templates.SearchTemplate,
 	message, err = client.enrollTemplateRequest(newEntry, id)
 	return
 }
-func (client *OutgoingClient) AuthorizeTemplate(template *templates.SearchTemplate) (status string, err error) {
-	status, err = client.authorizeTemplateRequest(template)
+func (client *OutgoingClient) AuthorizeTemplate(template *templates.SearchTemplate, deviceId string) (status string, err error) {
+	status, err = client.authorizeTemplateRequest(template, deviceId)
 	return
 }
 func (client *OutgoingClient) MatchTemplatesFilesMethod(probeFilePath string, candidateFilePath string) (isMatch bool, err error) {
@@ -128,14 +128,14 @@ func (client *OutgoingClient) EnrollTemplateFilesMethod(newEntryFilePath string,
 	message, err = client.enrollTemplateRequest(newEntry, id)
 	return
 }
-func (client *OutgoingClient) AuthorizeTemplateFilesMethod(templateFilePath string) (status string, err error) {
+func (client *OutgoingClient) AuthorizeTemplateFilesMethod(templateFilePath string, deviceId string) (status string, err error) {
 	status = "client side extracting template from file"
 	template, err := client.sdk.Extract(templateFilePath)
 	if err != nil {
 		err = fmt.Errorf("error occured while extracting the template for the probe file, %w", err)
 		return
 	}
-	status, err = client.authorizeTemplateRequest(template)
+	status, err = client.authorizeTemplateRequest(template, deviceId)
 	return
 }
 func (client *OutgoingClient) UploadCborZipFile(zipFilePath string) error {

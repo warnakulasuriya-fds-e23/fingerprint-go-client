@@ -15,7 +15,7 @@ import (
 	"github.com/warnakulasuriya-fds-e23/go-sourceafis-fork/templates"
 )
 
-func (client *OutgoingClient) authorizeTemplateRequest(template *templates.SearchTemplate) (status string, err error) {
+func (client *OutgoingClient) authorizeTemplateRequest(template *templates.SearchTemplate, deviceId string) (status string, err error) {
 	var accessToken string
 	status = "client side Access Token setup"
 	if client.accessToken == "" || client.expiryTime.Equal(time.Now()) || client.expiryTime.Before(time.Now().Add(5*time.Second)) {
@@ -35,7 +35,13 @@ func (client *OutgoingClient) authorizeTemplateRequest(template *templates.Searc
 	}
 
 	status = "client Side preparing request body"
-	reqobj := requestobjects.IdentifyTemplateReqObj{ProbeCbor: *probeBytes, DeviceId: os.Getenv("DEVICE_ID")}
+	deviceIdValid := ""
+	if deviceId == "null" {
+		deviceIdValid = os.Getenv("DEVICE_ID")
+	} else {
+		deviceIdValid = deviceId
+	}
+	reqobj := requestobjects.IdentifyTemplateReqObj{ProbeCbor: *probeBytes, DeviceId: deviceIdValid}
 	jsonobj, err := json.Marshal(reqobj)
 	if err != nil {
 		err = fmt.Errorf("[authorizeTemplateRequest] error while running json marshal for identify template request object : %w", err)
